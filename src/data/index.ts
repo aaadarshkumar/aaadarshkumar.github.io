@@ -22,8 +22,8 @@ export const profile = {
   /** IANA zone used by the live clock in the hero */
   timezone: 'Asia/Kolkata',
   email: 'aadarshkumar9916@gmail.com',
-  github: 'aadarshkumar',
-  linkedin: 'https://www.linkedin.com/in/aadarsh-795101212',
+  github: 'aaadarshkumar',
+  linkedin: 'https://www.linkedin.com/in/aadarsh-kumar-795101212',
   /** Left off the page on purpose — public phone numbers attract spam.
    *  It is on the resume PDF for anyone who needs it. */
   phone: '+91 6396682106',
@@ -44,7 +44,7 @@ export const aboutLead = {
   accent: 'the interesting part.',
 }
 
-export const aboutChips = ['AWS', 'Linux', 'Docker', 'CI/CD', 'Ansible', 'Networking']
+export const aboutChips = ['AWS', 'Linux', 'Docker', 'CI/CD', 'Ansible', 'Networking', 'Monitoring', 'Automation', 'Kubernetes', 'Python', 'Bash']
 
 export const aboutCopy: string[] = [
   'I work across the whole path from a commit to a running service — provisioning cloud resources, wiring up the pipeline that deploys to them, and then owning the monitoring that tells us when something is wrong.',
@@ -55,7 +55,7 @@ export const aboutCopy: string[] = [
 export const sheet: SheetRow[] = [
   { key: 'Role', value: 'Cloud & Systems Engineer, Rubico' },
   { key: 'Based in', value: 'Rishikesh, Uttarakhand, India' },
-  { key: 'Focus', value: 'AWS · Linux · CI/CD · Monitoring' },
+  { key: 'Focus', value: 'AWS · Linux · CI/CD · Monitoring · Automation · Kubernetes · Ansible · Networking' },
   { key: 'Learning', value: 'Kubernetes, Ansible at depth' },
   { key: 'Education', value: 'BCA, Modern Institute of Technology' },
 ]
@@ -136,6 +136,15 @@ export const work: WorkItem[] = [
     glyph: 'script',
     span: Span.Half,
   },
+  {
+  title: 'WireGuard VPN infrastructure',
+  kind: 'Networking · Cloud',
+  description:
+    'Built WireGuard VPN infrastructure from scratch on AWS EC2 and Lightsail, covering instance provisioning, firewall and routing configuration, peer management, client provisioning and secure remote connectivity.',
+  tags: ['WireGuard', 'AWS EC2', 'AWS Lightsail', 'VPN', 'Routing', 'Linux'],
+  glyph: 'network',
+  span: Span.Third,
+  }
 ]
 
 /* ---------- stack ---------- */

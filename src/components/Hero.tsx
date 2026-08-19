@@ -2,7 +2,7 @@ import { ArrowUpRight, FileText } from 'lucide-react'
 import { heroThesis, portrait, profile, resume, yearsSinceStart } from '../data'
 import { useLocalTime } from '../lib/hooks'
 
-const RING_TEXT = 'AWS · LINUX · DOCKER · CI/CD · MONITORING · AUTOMATION · '
+const RING_TEXT = 'AWS · LINUX · DOCKER · CI/CD · MONITORING · AUTOMATION · KUBERNETES · ANSIBLE · NETWORKING · '
 
 export function Hero() {
   const time = useLocalTime(profile.timezone)
