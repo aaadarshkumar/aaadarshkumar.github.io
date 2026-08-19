@@ -20,7 +20,7 @@ export type WorkItem = {
   /** Tools used, shown in the tile footer */
   tags: string[]
   /** Which diagram glyph to draw. See components/Glyphs.tsx */
-  glyph: 'pipeline' | 'cloud' | 'server' | 'network' | 'monitor' | 'script'
+  glyph: 'pipeline' | 'cloud' | 'server' | 'network' | 'monitor' | 'script' | 'vpn'
   span?: Span
   /** Optional outbound link — the tile becomes an anchor when set */
   url?: string

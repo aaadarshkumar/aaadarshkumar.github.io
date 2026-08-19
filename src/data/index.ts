@@ -56,7 +56,7 @@ export const sheet: SheetRow[] = [
   { key: 'Role', value: 'Cloud & Systems Engineer, Rubico' },
   { key: 'Based in', value: 'Rishikesh, Uttarakhand, India' },
   { key: 'Focus', value: 'AWS · Linux · CI/CD · Monitoring · Automation · Kubernetes · Ansible · Networking' },
-  { key: 'Learning', value: 'Kubernetes, Ansible at depth' },
+  { key: 'Learning', value: 'DevOps, Cloud Architecture' },
   { key: 'Education', value: 'BCA, Modern Institute of Technology' },
 ]
 
@@ -142,7 +142,7 @@ export const work: WorkItem[] = [
   description:
     'Built WireGuard VPN infrastructure from scratch on AWS EC2 and Lightsail, covering instance provisioning, firewall and routing configuration, peer management, client provisioning and secure remote connectivity.',
   tags: ['WireGuard', 'AWS EC2', 'AWS Lightsail', 'VPN', 'Routing', 'Linux'],
-  glyph: 'network',
+  glyph: 'vpn',
   span: Span.Third,
   }
 ]

@@ -180,6 +180,36 @@ function Script() {
     </svg>
   )
 }
+function VPN() {
+  return (
+    <svg {...box}>
+      <rect
+        x="48"
+        y="28"
+        width="104"
+        height="36"
+        rx="3"
+        stroke={STRUCT}
+        strokeWidth="1.3"
+      />
+
+      <circle cx="100" cy="46" r="10" stroke={HOT} strokeWidth="1.5" />
+
+      <path
+        d="M100 40 v12 M94 46 h12"
+        stroke={HOT}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+
+      <line x1="48" y1="46" x2="28" y2="46" stroke={LINE} strokeWidth="1" />
+      <line x1="152" y1="46" x2="172" y2="46" stroke={LINE} strokeWidth="1" />
+
+      <circle cx="24" cy="46" r="4" fill={HOT} />
+      <circle cx="176" cy="46" r="4" fill={HOT} />
+    </svg>
+  )
+}
 
 const GLYPHS: Record<WorkItem['glyph'], () => ReactElement> = {
   pipeline: Pipeline,
@@ -188,6 +218,7 @@ const GLYPHS: Record<WorkItem['glyph'], () => ReactElement> = {
   network: Network,
   monitor: Monitor,
   script: Script,
+  vpn: VPN
 }
 
 export function Glyph({ name }: { name: WorkItem['glyph'] }) {
