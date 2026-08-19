@@ -16,7 +16,7 @@ export { portrait, resume }
 export const profile = {
   first: 'Aadarsh',
   last: 'Kumar',
-  role: 'Cloud & Infrastructure Engineer',
+  role: 'Network Engineer → DevOps',
   city: 'Rishikesh, Uttarakhand',
   country: 'IN',
   /** IANA zone used by the live clock in the hero */
@@ -27,124 +27,143 @@ export const profile = {
   /** Left off the page on purpose — public phone numbers attract spam.
    *  It is on the resume PDF for anyone who needs it. */
   phone: '+91 6396682106',
-  openToWork: false,
-  /** Career start, used to compute years of experience automatically */
-  startedISO: '2022-09-01',
+  /** true  -> hero reads "Open to DevOps roles"
+   *  false -> hero reads "Currently at Rubico" */
+  openToWork: true,
+  /** Career start. Drives the year count in the hero and `uptime`. */
+  startedISO: '2022-01-01',
 }
 
-/** Rendered after "<N> years" — the count is computed from profile.startedISO. */
+/** Huge word behind the hero. Keep it short — one word reads best. */
+export const heroGhost = 'DEVOPS'
+
+/** Rendered after "<N>+ years" — the count is computed from profile.startedISO. */
 export const heroThesis =
-  'keeping production infrastructure boring: AWS environments that scale without drama, pipelines that ship without hand-holding, and Linux fleets that stay quiet because the alerting is honest.'
+  'at the layer where things actually break: routing, DNS, firewalls, TLS, load balancers. Now I automate what sits on top of it — pipelines that ship on merge, infrastructure defined in code, and alerting that earns the interrupt.'
 
 /* ---------- about ---------- */
 
 /** The `accent` clause renders in the live accent colour. */
 export const aboutLead = {
-  text: 'Builds the plumbing so the product gets to be ',
-  accent: 'the interesting part.',
+  text: 'Most outages are not application bugs. They are ',
+  accent: 'the layer underneath.',
 }
 
-export const aboutChips = ['AWS', 'Linux', 'Docker', 'CI/CD', 'Ansible', 'Networking', 'Monitoring', 'Automation', 'Kubernetes', 'Python', 'Bash']
+export const aboutChips = [
+  'AWS',
+  'Terraform',
+  'Kubernetes',
+  'Docker',
+  'CI/CD',
+  'Ansible',
+  'Linux',
+  'Networking',
+]
 
 export const aboutCopy: string[] = [
-  'I work across the whole path from a commit to a running service — provisioning cloud resources, wiring up the pipeline that deploys to them, and then owning the monitoring that tells us when something is wrong.',
-  'Most of my day is AWS and Linux. I provision and secure compute, storage, database and network resources, keep Apache and Nginx behaving, and automate the repetitive parts in Bash and Python so they stop consuming attention.',
-  'I also run the systems the rest of the office depends on — building-wide networking, endpoint administration and Google Workspace — which is a useful counterweight to cloud work. It keeps you honest about how failures actually reach people.',
+  'I have spent four years running networks and Linux infrastructure — routing and switching, DNS, firewall policy, VPN tunnels, certificates, load balancers, and the servers underneath all of it. I am now moving deliberately into DevOps and platform engineering.',
+  'The networking background turns out to be the useful part rather than the thing I am leaving behind. A security group that is one port too tight, a health check aimed at the wrong port, an MTU mismatch inside an overlay, a certificate that expired on a Saturday — that is where most production incidents actually live, and it is the layer I have been debugging for years.',
+  'So when a pipeline goes green but traffic still will not flow, I know where to look. Day to day I am building CI/CD in GitHub Actions, describing AWS in Terraform and Ansible instead of clicking it, packaging with Docker, and wiring Prometheus and Grafana so an alert still means something.',
 ]
 
 export const sheet: SheetRow[] = [
-  { key: 'Role', value: 'Cloud & Systems Engineer, Rubico' },
-  { key: 'Based in', value: 'Rishikesh, Uttarakhand, India' },
-  { key: 'Focus', value: 'AWS · Linux · CI/CD · Monitoring · Automation · Kubernetes · Ansible · Networking' },
-  { key: 'Learning', value: 'DevOps, Cloud Architecture' },
-  { key: 'Education', value: 'BCA, Modern Institute of Technology' },
+  { key: 'Now', value: 'Cloud & Systems Engineer, Rubico' },
+  { key: 'Moving to', value: 'DevOps / platform engineering' },
+  { key: 'Foundation', value: '4+ yrs networking, Linux, AWS' },
+  { key: 'Deepening', value: 'Kubernetes · Terraform · GitOps' },
+  { key: 'Certified', value: 'CCNA · RHCSA · MCSA · AWS CCP' },
 ]
 
 /* ---------- ticker ---------- */
 
 export const tickerItems = [
   'AWS',
-  'Linux',
-  'Docker',
-  'CI/CD',
-  'GitHub Actions',
-  'Jenkins',
-  'Ansible',
+  'Terraform',
   'Kubernetes',
-  'Nginx',
+  'Docker',
+  'GitHub Actions',
+  'Ansible',
+  'Helm',
+  'Argo CD',
   'Prometheus',
   'Grafana',
+  'Linux',
+  'WireGuard',
+  'Networking',
   'Bash',
   'Python',
-  'Networking',
+  'GitOps',
 ]
 
-/* ---------- what I build ---------- */
+/* ---------- what I build ----------
+   Spans are tuned to fill the 12-column grid exactly:
+   Wide(8) + Third(4) | Third + Third + Third | Half(6) + Half(6)
+   Reorder freely, but keep each row adding up to 12.                */
 
 export const work: WorkItem[] = [
   {
     title: 'Build and deploy pipelines',
     kind: 'CI/CD · Automation',
     description:
-      'Automated build-test-deploy pipelines with GitHub Actions and AWS CodePipeline, so releases are a merge rather than a checklist. Fewer manual steps, fewer surprises at deploy time.',
+      'Automated build-test-deploy pipelines in GitHub Actions and AWS CodePipeline, so a release is a merge rather than a checklist. Lint, build and deploy run as separate jobs, which means a failure tells you which stage broke instead of just that something did.',
     tags: ['GitHub Actions', 'AWS CodePipeline', 'Jenkins', 'GitLab CI'],
     glyph: 'pipeline',
     span: Span.Wide,
   },
   {
     title: 'AWS environments',
-    kind: 'Cloud · Infrastructure',
+    kind: 'Cloud',
     description:
-      'Provisioning and securing EC2, RDS, S3 and VPC resources, with Elastic Beanstalk handling application deployments.',
-    tags: ['EC2', 'RDS', 'S3', 'VPC'],
+      'Provisioning and securing EC2, VPC, RDS and S3 — subnets, route tables, security groups and IAM boundaries, not just instances.',
+    tags: ['EC2', 'VPC', 'RDS', 'S3', 'IAM'],
     glyph: 'cloud',
     span: Span.Third,
   },
   {
-    title: 'Web servers and hosting',
-    kind: 'Servers · Hosting',
+    title: 'Infrastructure as code',
+    kind: 'IaC · Configuration',
     description:
-      'Apache and Nginx installs, virtual hosts, DNS records, certificates and WHM-managed hosting — set up to be reproducible instead of remembered.',
-    tags: ['Nginx', 'Apache', 'DNS', 'WHM', 'SSH'],
+      'Describing infrastructure in Terraform and Ansible so a change is reviewable, repeatable and revertible instead of remembered.',
+    tags: ['Terraform', 'Ansible', 'YAML', 'Git'],
+    glyph: 'script',
+    span: Span.Third,
+  },
+  {
+    title: 'Containers and orchestration',
+    kind: 'Runtime',
+    description:
+      'Docker images that behave the same everywhere, run on Kubernetes and fronted by Nginx, with Helm keeping releases consistent.',
+    tags: ['Docker', 'Kubernetes', 'Helm', 'Nginx'],
     glyph: 'server',
     span: Span.Third,
   },
   {
-    title: 'Office network infrastructure',
-    kind: 'Networking · Systems',
+    title: 'Observability and alerting',
+    kind: 'Monitoring',
     description:
-      'Building-wide network setup and day-to-day Linux troubleshooting for internal teams — the unglamorous work that decides whether anyone else can do theirs.',
-    tags: ['Routing', 'Switching', 'Linux', 'Workspace admin'],
-    glyph: 'network',
-    span: Span.Wide,
-  },
-  {
-    title: 'Monitoring and alerting',
-    kind: 'Observability',
-    description:
-      'CloudWatch, Prometheus and Grafana wired up to catch problems before users report them, tuned so an alert still means something.',
-    tags: ['CloudWatch', 'Prometheus', 'Grafana'],
+      'Prometheus, Grafana and CloudWatch wired to catch problems before users report them, and tuned so an alert still means something.',
+    tags: ['Prometheus', 'Grafana', 'CloudWatch', 'Loki'],
     glyph: 'monitor',
-    span: Span.Half,
+    span: Span.Third,
   },
   {
-    title: 'Operational tooling',
-    kind: 'Scripting',
+    title: 'WireGuard VPN infrastructure',
+    kind: 'Networking · Cloud',
     description:
-      'Bash, Python and YAML automation for the routine tasks — provisioning, backups, checks and reporting — plus Docker images that behave the same everywhere.',
-    tags: ['Bash', 'Python', 'YAML', 'Docker'],
-    glyph: 'script',
+      'Built WireGuard VPN infrastructure from scratch on AWS EC2 and Lightsail — instance provisioning, firewall and routing configuration, peer management, client provisioning and secure remote connectivity.',
+    tags: ['WireGuard', 'AWS EC2', 'Lightsail', 'Routing', 'Linux'],
+    glyph: 'vpn',
     span: Span.Half,
   },
   {
-  title: 'WireGuard VPN infrastructure',
-  kind: 'Networking · Cloud',
-  description:
-    'Built WireGuard VPN infrastructure from scratch on AWS EC2 and Lightsail, covering instance provisioning, firewall and routing configuration, peer management, client provisioning and secure remote connectivity.',
-  tags: ['WireGuard', 'AWS EC2', 'AWS Lightsail', 'VPN', 'Routing', 'Linux'],
-  glyph: 'vpn',
-  span: Span.Third,
-  }
+    title: 'The networking foundation',
+    kind: 'Network · Security',
+    description:
+      'Building-wide network infrastructure: routing and switching, DNS, firewall policy, TLS and certificate lifecycle, and the Linux troubleshooting that goes with all of it. This is the layer most cloud incidents actually resolve to.',
+    tags: ['Routing', 'DNS', 'Firewalls', 'TLS', 'Wireshark'],
+    glyph: 'network',
+    span: Span.Half,
+  },
 ]
 
 /* ---------- stack ---------- */
@@ -152,19 +171,27 @@ export const work: WorkItem[] = [
 export const stack: StackGroup[] = [
   {
     name: 'Cloud',
-    items: ['AWS EC2', 'RDS', 'S3', 'VPC', 'Elastic Beanstalk', 'CloudWatch', 'Azure', 'DigitalOcean'],
+    items: ['AWS EC2', 'VPC', 'RDS', 'S3', 'Elastic Beanstalk', 'CloudWatch', 'Azure', 'DigitalOcean'],
   },
   {
-    name: 'Pipelines',
-    items: ['GitHub Actions', 'Jenkins', 'GitLab CI/CD', 'AWS CodePipeline', 'Git', 'Ansible'],
+    name: 'Infrastructure as code',
+    items: ['Terraform', 'Ansible', 'YAML', 'Git', 'GitOps workflows'],
   },
   {
-    name: 'Runtime',
-    items: ['Docker', 'Kubernetes', 'Nginx', 'Apache', 'WHM', 'DNS', 'SSH'],
+    name: 'CI/CD',
+    items: ['GitHub Actions', 'Jenkins', 'GitLab CI', 'AWS CodePipeline', 'Argo CD'],
   },
   {
-    name: 'Operate',
-    items: ['Linux administration', 'Networking', 'Prometheus', 'Grafana', 'Bash', 'Python', 'Google Workspace'],
+    name: 'Containers',
+    items: ['Docker', 'Kubernetes', 'Helm', 'Nginx', 'Apache'],
+  },
+  {
+    name: 'Observe & operate',
+    items: ['Prometheus', 'Grafana', 'Loki', 'Linux administration', 'Bash', 'Python'],
+  },
+  {
+    name: 'Network & security',
+    items: ['Routing & switching', 'DNS', 'Firewall policy', 'WireGuard', 'TLS / OpenSSL', 'Wireshark'],
   },
 ]
 
@@ -177,11 +204,11 @@ export const roles: Role[] = [
     period: 'Sep 2022 — Present',
     place: 'Uttarakhand, IN',
     points: [
-      'Run building-wide network infrastructure and handle Linux troubleshooting for internal teams.',
-      'Install and maintain Apache and Nginx web servers; deploy and manage applications on AWS EC2, RDS and S3, with Elastic Beanstalk automating deployments.',
-      'Build and maintain CI/CD pipelines in GitHub Actions and AWS CodePipeline.',
-      'Write Bash, Python and YAML automation for routine operational work, and package applications with Docker for consistent environments.',
-      'Monitor system performance in CloudWatch, apply security practices and tune cloud environments for availability and scale.',
+      'Build and maintain CI/CD pipelines in GitHub Actions and AWS CodePipeline, cutting releases down to a merge.',
+      'Provision and secure AWS infrastructure — EC2, VPC, RDS, S3 — and automate application deployments with Elastic Beanstalk.',
+      'Run building-wide network infrastructure: routing and switching, DNS, firewall policy and remote access, plus Linux troubleshooting for internal teams.',
+      'Automate operational work in Bash, Python and YAML, and package applications with Docker for consistent environments.',
+      'Monitor system performance with CloudWatch, apply security practices and tune environments for availability and scale.',
     ],
   },
   {

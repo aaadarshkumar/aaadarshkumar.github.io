@@ -1,6 +1,6 @@
 # aadarshkumar.github.io
 
-Personal site for Aadarsh Kumar — Cloud & Infrastructure Engineer.
+Personal site for Aadarsh Kumar — network engineer moving into DevOps.
 React 19 + Vite 7 + TypeScript, no CSS framework, deployed to GitHub Pages by Actions.
 
 ---
@@ -85,7 +85,11 @@ Notes on a few fields:
 
 ### Swapping the photo or resume
 
-Replace `src/assets/portrait.webp` (square, ideally 800×800 or larger) and
+The portrait now displays at up to 430px, so it wants a source of at least
+860×860 to stay crisp on a high-DPI screen. The current file was upscaled from
+a 400×400 original — fine, but a larger original would genuinely look sharper.
+
+Replace `src/assets/portrait.webp` (square, 860×860 or larger) and
 `src/assets/aadarsh_kumar_resume.pdf`, keeping the same filenames. The current
 portrait is 400×400, which is fine at the rendered size but a larger source
 would look sharper on high-DPI screens.
@@ -108,11 +112,35 @@ dot.
 To retune it, change the two arguments in `src/App.tsx`:
 
 ```tsx
-useAccentHue(292, 196)   // start hue, end hue (OKLCH degrees)
+useScrollTokens(292, 196)   // start hue, end hue (OKLCH degrees)
 ```
 
 Useful hues: 292 violet · 272 indigo · 252 blue · 232 sky · 212 cyan · 196 teal.
 For a fixed accent, pass the same number twice.
+
+**The hero parallaxes on scroll** from the same single listener. `useScrollTokens`
+publishes three custom properties — `--h` (accent hue), `--p` (document progress,
+for the header bar) and `--hp` (hero progress, 0 to 1 over the first viewport) —
+and the hero layers read `--hp` in `transform: translate3d(...)`:
+
+| Layer | Movement | Reads as |
+| --- | --- | --- |
+| Blueprint grid | `+64px` | furthest away |
+| Accent bloom | `+104px` | — |
+| `DEVOPS` backdrop word | `+86px` | behind everything |
+| Name / role / buttons | `-34px`, fades out | — |
+| Portrait | `-76px` | nearest the viewer |
+
+Positive values lag behind the scroll, negative ones lead it. That split is what
+creates the depth. Change the pixel figures in `App.css` to taste; the whole
+effect is still one scroll listener and one rAF write per frame, so it does not
+cost anything as you add layers.
+
+The backdrop word is `heroGhost` in `src/data/index.ts`. One short word works
+best — it is sized at `24vw`, so anything longer than about seven characters will
+run out of room. It is a dim solid fill with a slightly stronger edge rather than
+a pure outline, because a thin outline vanishes wherever the name and portrait
+cover it.
 
 Other deliberate choices:
 
@@ -162,12 +190,25 @@ src/
 
 ---
 
-## Before you publish
+## Gotchas worth remembering
 
-Three details came straight off the resume PDF and are worth a second look,
-since they are expensive to get wrong on a public page:
+**Anything in `public/` is referenced from the site root, not relatively.**
+`href="/favicon.ico"`, never `href="public/favicon.ico"` — the latter makes Vite
+bundle a duplicate hashed copy and silently drops the `<link rel="manifest">`
+from the built HTML.
 
-1. **Email** — the site uses `aadarshkumar9916@gmail.com`.
-2. **LinkedIn** — `linkedin.com/in/aadarsh-795101212` reads like a partial
-   slug. Open it and confirm it resolves to your profile.
-3. **Phone** — currently not rendered, by choice. See above.
+**Work tile spans must add up to 12 per row.** The grid is 12 columns and
+`Span.Wide` is 8, `Span.Half` is 6, `Span.Third` is 4. The current seven tiles
+are laid out `8+4 | 4+4+4 | 6+6`. If you add or remove one, re-check the
+arithmetic or you get a stranded tile on a half-empty row.
+
+**`profile.openToWork`** is currently `true`, so the hero status line reads
+"Open to DevOps roles". Set it to `false` and it reads "Currently at Rubico".
+
+**`profile.startedISO`** is `2022-01-01`, which is what produces "4+ years". It
+counts from the MISNT role, i.e. total professional experience. Change it to
+`2022-09-01` if you would rather count only from Rubico.
+
+**Your job title at Rubico** is recorded as "Cloud & Systems Engineer" in
+`roles`, taken from the resume PDF. If your official title is Network Engineer,
+change it in that one place so the site, the resume and LinkedIn agree.

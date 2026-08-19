@@ -1,14 +1,18 @@
 import { ArrowUpRight, FileText } from 'lucide-react'
-import { heroThesis, portrait, profile, resume, yearsSinceStart } from '../data'
+import { heroGhost, heroThesis, portrait, profile, resume, yearsSinceStart } from '../data'
 import { useLocalTime } from '../lib/hooks'
 
-const RING_TEXT = 'AWS · LINUX · DOCKER · CI/CD · MONITORING · AUTOMATION · KUBERNETES · ANSIBLE · NETWORKING · '
+const RING_TEXT = 'AWS · TERRAFORM · KUBERNETES · CI/CD · DOCKER · ANSIBLE · OBSERVABILITY · NETWORKING · '
 
 export function Hero() {
   const time = useLocalTime(profile.timezone)
 
   return (
     <section className="hero" id="top">
+      <span className="hero__ghost" aria-hidden="true">
+        {heroGhost}
+      </span>
+
       <div className="hero__top">
         <span>{profile.city.toUpperCase()}</span>
         <span className="sep" aria-hidden="true">
@@ -23,12 +27,12 @@ export function Hero() {
         </span>
         <span>
           <span className="beacon" aria-hidden="true" />{' '}
-          {profile.openToWork ? 'Open to opportunities' : 'Currently at Rubico'}
+          {profile.openToWork ? 'Open to DevOps roles' : 'Currently at Rubico'}
         </span>
       </div>
 
       <div className="hero__body">
-        <div>
+        <div className="hero__intro">
           <h1 className="hero__name dsp">
             <span>{profile.first}</span>
             <span className="l2">{profile.last}</span>
@@ -57,8 +61,8 @@ export function Hero() {
           <img
             className="port__img"
             src={portrait}
-            width={320}
-            height={320}
+            width={800}
+            height={800}
             alt={`${profile.first} ${profile.last}`}
             fetchPriority="high"
           />
@@ -76,7 +80,7 @@ export function Hero() {
 
       <div className="hero__foot">
         <p className="hero__thesis">
-          <b>{yearsSinceStart()} years</b> {heroThesis}
+          <b>{yearsSinceStart()}+ years</b> {heroThesis}
         </p>
         <p className="hero__scroll">Scroll ↓</p>
       </div>

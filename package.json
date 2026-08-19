@@ -1,9 +1,9 @@
 {
-  "name": "aadarshkumar.github.io",
+  "name": "aaadarshkumar.github.io",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://aadarshkumar.github.io/",
+  "homepage": "https://aaadarshkumar.github.io/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

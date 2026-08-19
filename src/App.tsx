@@ -4,7 +4,7 @@ import { Hero } from './components/Hero'
 import { About, Stack, Ticker, Work } from './components/Sections'
 import { History, Contact } from './components/History'
 import { Shell } from './components/Shell'
-import { useAccentHue, useFinePointer, useReveal } from './lib/hooks'
+import { useFinePointer, useReveal, useScrollTokens } from './lib/hooks'
 import './App.css'
 
 /** A soft dot that trails the pointer and swells over anything clickable. */
@@ -53,7 +53,7 @@ function PointerDot() {
 export default function App() {
   const finePointer = useFinePointer()
 
-  useAccentHue(292, 196)
+  useScrollTokens(292, 196)
   useReveal()
 
   return (

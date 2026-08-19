@@ -266,11 +266,12 @@ body.dot-on button {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: -3;
   background-image: linear-gradient(to right, var(--rule-deep) 1px, transparent 1px),
     linear-gradient(to bottom, var(--rule-deep) 1px, transparent 1px);
   background-size: 68px 68px;
   opacity: 0.55;
+  transform: translate3d(0, calc(var(--hp, 0) * 64px), 0);
   -webkit-mask-image: radial-gradient(120% 90% at 78% 22%, #000 12%, transparent 72%);
   mask-image: radial-gradient(120% 90% at 78% 22%, #000 12%, transparent 72%);
 }
@@ -279,7 +280,7 @@ body.dot-on button {
 .hero::after {
   content: '';
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   top: 8%;
   right: -6%;
   width: min(680px, 74vw);
@@ -288,6 +289,29 @@ body.dot-on button {
   background: radial-gradient(circle, var(--accent-glow) 0%, transparent 62%);
   opacity: 0.55;
   pointer-events: none;
+  transform: translate3d(0, calc(var(--hp, 0) * 104px), 0);
+}
+
+/* Full-width backdrop word. Dim solid fill with a slightly stronger edge:
+   a thin outline alone disappears once the name and portrait cover it. */
+.hero__ghost {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 47%;
+  font-family: var(--display);
+  font-weight: 900;
+  font-variation-settings: 'wdth' 66, 'wght' 900;
+  font-size: clamp(104px, 24vw, 330px);
+  line-height: 0.76;
+  letter-spacing: -0.02em;
+  color: var(--ghost-fill);
+  -webkit-text-stroke: 1px var(--ghost-edge);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  transform: translate3d(-50%, calc(-50% + var(--hp, 0) * 86px), 0);
+  will-change: transform;
 }
 
 .hero__top {
@@ -307,6 +331,11 @@ body.dot-on button {
 
 .hero__clock {
   font-variant-numeric: tabular-nums;
+}
+
+.hero__intro {
+  transform: translate3d(0, calc(var(--hp, 0) * -34px), 0);
+  opacity: calc(1 - var(--hp, 0) * 0.72);
 }
 
 .hero__body {
@@ -392,9 +421,11 @@ body.dot-on button {
 /* Portrait */
 .port {
   position: relative;
-  width: clamp(190px, 25vw, 320px);
+  width: clamp(232px, 32vw, 430px);
   aspect-ratio: 1;
   flex: none;
+  transform: translate3d(0, calc(var(--hp, 0) * -76px), 0);
+  will-change: transform;
 }
 
 .port__img {
@@ -414,7 +445,7 @@ body.dot-on button {
 
 .port__ring {
   position: absolute;
-  inset: -40px;
+  inset: -52px;
   animation: orbit 34s linear infinite;
   pointer-events: none;
 }
@@ -440,6 +471,8 @@ body.dot-on button {
   gap: clamp(18px, 3vw, 48px);
   padding-top: clamp(18px, 2.5vw, 26px);
   border-top: 1px solid var(--rule-deep);
+  transform: translate3d(0, calc(var(--hp, 0) * -18px), 0);
+  opacity: calc(1 - var(--hp, 0) * 0.85);
 }
 
 .hero__thesis {
@@ -698,8 +731,8 @@ body.dot-on button {
 
 .stack__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(22px, 3vw, 42px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(22px, 3vw, 42px) clamp(24px, 3.5vw, 56px);
 }
 
 .stack__cat h4 {
@@ -1132,6 +1165,11 @@ body.dot-on button {
     display: none;
   }
 
+  .hero__ghost {
+    top: 40%;
+    font-size: clamp(88px, 30vw, 150px);
+  }
+
   .sheet__row {
     grid-template-columns: 96px minmax(0, 1fr);
     font-size: 12px;
@@ -1150,6 +1188,20 @@ body.dot-on button {
   .ticker__rail,
   .port__ring {
     animation: none;
+  }
+
+  .hero::before,
+  .hero::after,
+  .hero__ghost,
+  .hero__intro,
+  .hero__foot,
+  .port {
+    transform: none;
+  }
+
+  .hero__intro,
+  .hero__foot {
+    opacity: 1;
   }
 
   .rise {

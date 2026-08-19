@@ -14,7 +14,21 @@ function buildCommands(): ShellCommand[] {
       description: 'who you are talking to',
       output: [
         `${profile.first} ${profile.last} — ${profile.role}`,
-        `${profile.city}, ${profile.country} · ${yearsSinceStart()} years in the field`,
+        `${profile.city}, ${profile.country} · ${yearsSinceStart()}+ years in networking and infrastructure`,
+        'moving into DevOps and platform engineering — networking is the foundation, not the exit',
+      ],
+    },
+    {
+      command: 'pipeline',
+      description: 'how a change reaches production',
+      output: [
+        '  commit → lint → build → image → deploy → verify',
+        '',
+        '  lint      typecheck + eslint, fails fast',
+        '  build     artifact produced once, reused downstream',
+        '  image     container built and pushed to the registry',
+        '  deploy    GitHub Actions / CodePipeline, one environment at a time',
+        '  verify    health check and metrics before the job goes green',
       ],
     },
     {

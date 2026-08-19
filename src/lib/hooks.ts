@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react'
 
 /**
- * Rotates the global --h token from `from` to `to` as the document scrolls,
- * and publishes scroll progress as --p. Every accent on the page reads from
- * these two custom properties, so one rAF-throttled write repaints the lot.
+ * One rAF-throttled scroll listener publishing three custom properties:
+ *
+ *   --h   accent hue, interpolated `from` -> `to` across the document
+ *   --p   document scroll progress, 0% -> 100% (header progress bar)
+ *   --hp  hero parallax progress, 0 -> 1 over the first viewport
+ *
+ * Everything that moves or changes colour on scroll reads from these, so the
+ * whole page is driven by a single listener rather than one per effect.
  */
-export function useAccentHue(from = 292, to = 196) {
+export function useScrollTokens(from = 292, to = 196) {
   useEffect(() => {
     const root = document.documentElement
     let raf = 0
@@ -16,6 +21,10 @@ export function useAccentHue(from = 292, to = 196) {
       const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0
       root.style.setProperty('--h', (from + (to - from) * p).toFixed(1))
       root.style.setProperty('--p', `${(p * 100).toFixed(1)}%`)
+
+      const hero = Math.max(1, window.innerHeight)
+      const hp = Math.min(1, Math.max(0, window.scrollY / hero))
+      root.style.setProperty('--hp', hp.toFixed(4))
     }
 
     const schedule = () => {
