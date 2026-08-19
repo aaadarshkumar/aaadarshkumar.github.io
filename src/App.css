@@ -390,7 +390,7 @@ body.dot-on button {
 }
 
 /* Portrait */
-.port {
+/* .port {
   position: relative;
   width: clamp(190px, 25vw, 320px);
   aspect-ratio: 1;
@@ -419,6 +419,48 @@ body.dot-on button {
   pointer-events: none;
 }
 
+.port__ring text {
+  font-family: var(--mono);
+  font-size: 5.4px;
+  letter-spacing: 0.32em;
+  fill: var(--on-deep-3);
+  text-transform: uppercase;
+} */
+
+/* Enhance Portrait */
+.port {
+  position: relative;
+  width: clamp(320px, 30vw, 500px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.port__img {
+  width: 78%;
+  height: 78%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+.port__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.port__edge {
+  position: absolute;
+  inset: 7%;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  z-index: 0;
+}
 .port__ring text {
   font-family: var(--mono);
   font-size: 5.4px;

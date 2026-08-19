@@ -53,7 +53,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="port">
+        {/* <div className="port">
           <img
             className="port__img"
             src={portrait}
@@ -72,6 +72,30 @@ export function Hero() {
             </text>
           </svg>
         </div>
+      </div> */}
+
+      <div className="port">
+        <img
+          className="port__img"
+          src={portrait}
+          alt={`${profile.first} ${profile.last}`}
+          fetchPriority="high"
+        />
+
+        <span className="port__edge" aria-hidden="true" />
+
+        <svg className="port__ring" viewBox="0 0 200 200" aria-hidden="true">
+          <defs>
+            <path
+              id="ring"
+              d="M 100,100 m -88,0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0"
+            />
+          </defs>
+
+          <text>
+            <textPath href="#ring">{RING_TEXT.repeat(2)}</textPath>
+          </text>
+        </svg>
       </div>
 
       <div className="hero__foot">
