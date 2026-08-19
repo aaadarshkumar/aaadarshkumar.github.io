@@ -57,8 +57,8 @@ export function Hero() {
           <img
             className="port__img"
             src={portrait}
-            // width={320}
-            // height={320}
+            width={320}
+            height={320}
             alt={`${profile.first} ${profile.last}`}
             fetchPriority="high"
           />
