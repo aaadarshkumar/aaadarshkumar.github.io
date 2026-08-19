@@ -42,7 +42,7 @@ Then, **once**, in the repo: **Settings → Pages → Build and deployment → S
 build artifact, so branch deployment would publish the raw source instead.
 
 After that, every push to `main` lints, builds and deploys. Pull requests run
-lint and build only. `.github/workflows/deploy.yml` also accepts a manual
+lint and build only. `.github/workflows/deploy.yml` also accepts a manual 
 `workflow_dispatch` run.
 
 The site is served from the domain root, so `base` stays `'/'` in
