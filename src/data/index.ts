@@ -269,7 +269,7 @@ export const badges: Badge[] = [
     code: 'LFS162',
     issuer: 'The Linux Foundation',
     date: 'Aug 2026',
-    verify: 'https://www.credly.com/earner/earned/badge/451a0095-875a-433e-8308-6cb8ab9a4379',
+    verify: 'https://www.credly.com/badges/451a0095-875a-433e-8308-6cb8ab9a4379/public_url',
     art: lfs162Art,
   },
   {
@@ -277,7 +277,7 @@ export const badges: Badge[] = [
     code: 'LFS158',
     issuer: 'The Linux Foundation',
     date: 'Aug 2026',
-    verify: 'https://www.credly.com/earner/earned/badge/a2819728-a077-489a-abc3-3cbc5ee58a1a',
+    verify: 'https://www.credly.com/badges/a2819728-a077-489a-abc3-3cbc5ee58a1a/public_url',
     art: lfs158Art,
   },
   {
@@ -285,7 +285,7 @@ export const badges: Badge[] = [
     code: 'SimuLearn',
     issuer: 'Amazon Web Services',
     date: 'Jul 2026',
-    verify: 'https://www.credly.com/earner/earned/badge/59884cce-a1dd-4717-9baa-2b217ecab5ca',
+    verify: 'https://www.credly.com/badges/59884cce-a1dd-4717-9baa-2b217ecab5ca/public_url',
     art: awsCpArt,
   },
 ]
