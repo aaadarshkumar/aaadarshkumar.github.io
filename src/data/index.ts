@@ -9,6 +9,7 @@ import resume from '../assets/aadarsh_kumar_resume.pdf'
 import lfs162Art from '../assets/badges/lfs162.webp'
 import lfs158Art from '../assets/badges/lfs158.webp'
 import awsCpArt from '../assets/badges/aws-cloud-practitioner.webp'
+import ibmDockerArt from '../assets/badges/ibm-docker-essentials.webp'
 import type {
   Badge,
   Credential,
@@ -249,11 +250,20 @@ export const issuers: IssuerMeta[] = [
   { id: 'aws', name: 'Amazon Web Services', hex: '#FF9900' },
   { id: 'linuxfoundation', name: 'The Linux Foundation', hex: '#5B9BFF' },
   { id: 'anthropic', name: 'Anthropic', hex: '#D4A27F' },
+  { id: 'ibm', name: 'IBM', hex: '#0F62FE' },
   { id: 'cantrill', name: 'learn.cantrill.io', hex: '#4FC3F7' },
 ]
 
 /** Publicly verifiable badges. These get the large cards. */
 export const badges: Badge[] = [
+  {
+    title: 'Docker Essentials: A Developer Introduction',
+    code: 'IBM Skills Network',
+    issuer: 'IBM',
+    date: 'Aug 2026',
+    verify: 'https://www.credly.com/badges/7ed770ce-07d2-4241-902a-e3795536e214/public_url',
+    art: ibmDockerArt,
+  },
   {
     title: 'Introduction to DevOps and Site Reliability Engineering',
     code: 'LFS162',
@@ -282,6 +292,13 @@ export const badges: Badge[] = [
 
 /** Everything completed, newest first. Sorted at render time by `iso`. */
 export const credentials: Credential[] = [
+  {
+    name: 'Docker Essentials: A Developer Introduction',
+    issuer: 'ibm',
+    date: 'Aug 2026',
+    iso: '2026-08-22',
+    pdf: '/certificates/ibm-docker-essentials.pdf',
+  },
   {
     name: 'Introduction to DevOps and Site Reliability Engineering',
     issuer: 'linuxfoundation',

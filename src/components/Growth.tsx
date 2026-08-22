@@ -1,12 +1,13 @@
 import type { ComponentType } from 'react'
 import { badges, credentials, growthLead, issuers } from '../data'
 import type { Issuer } from '../types'
-import { Anthropic, AwsMark, Credly, DockerMark, LinuxFoundation } from './BrandIcons'
+import { Anthropic, AwsMark, Credly, DockerMark, IbmMark, LinuxFoundation } from './BrandIcons'
 
 const MARKS: Record<Issuer, ComponentType<{ size?: number }>> = {
   aws: AwsMark,
   linuxfoundation: LinuxFoundation,
   anthropic: Anthropic,
+  ibm: IbmMark,
   cantrill: DockerMark,
 }
 

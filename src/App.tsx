@@ -31,8 +31,8 @@ function PointerDot() {
     }
 
     const tick = () => {
-      x += (tx - x) * 0.5
-      y += (ty - y) * 0.5
+      x += (tx - x) * 0.2
+      y += (ty - y) * 0.2
       const node = dot.current
       if (node) node.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`
       raf = requestAnimationFrame(tick)

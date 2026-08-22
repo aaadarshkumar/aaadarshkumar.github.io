@@ -71,7 +71,7 @@ export type Badge = {
   art: string
 }
 
-export type Issuer = 'aws' | 'linuxfoundation' | 'anthropic' | 'cantrill'
+export type Issuer = 'aws' | 'linuxfoundation' | 'anthropic' | 'ibm' | 'cantrill'
 
 /** A completed course/certificate — rendered as a compact ledger row. */
 export type Credential = {

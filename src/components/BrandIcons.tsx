@@ -47,6 +47,28 @@ export function DockerMark({ size = 18 }: MarkProps) {
 
 export const DockerMarkHex = '#2496ED'
 
+/** IBM, like AWS, has no distributable glyph. Wordmark tile. */
+export function IbmMark({ size = 18 }: MarkProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" role="presentation">
+      <text
+        x="12"
+        y="15.5"
+        textAnchor="middle"
+        fontFamily="var(--mono)"
+        fontSize="8.4"
+        fontWeight="700"
+        letterSpacing="0.4"
+        fill="currentColor"
+      >
+        IBM
+      </text>
+    </svg>
+  )
+}
+
+export const IbmMarkHex = '#0F62FE'
+
 /** AWS has no distributable glyph — a wordmark tile keeps it honest. */
 export function AwsMark({ size = 18 }: MarkProps) {
   return (
