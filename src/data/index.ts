@@ -6,7 +6,19 @@
 import { Github, Linkedin, FileText, Mail } from 'lucide-react'
 import portrait from '../assets/portrait.webp'
 import resume from '../assets/aadarsh_kumar_resume.pdf'
-import type { Credential, Role, SheetRow, SocialLink, StackGroup, WorkItem } from '../types'
+import lfs162Art from '../assets/badges/lfs162.webp'
+import lfs158Art from '../assets/badges/lfs158.webp'
+import awsCpArt from '../assets/badges/aws-cloud-practitioner.webp'
+import type {
+  Badge,
+  Credential,
+  IssuerMeta,
+  Role,
+  SheetRow,
+  SocialLink,
+  StackGroup,
+  WorkItem,
+} from '../types'
 import { Span } from '../types'
 
 export { portrait, resume }
@@ -231,12 +243,137 @@ export const roles: Role[] = [
   },
 ]
 
+/* ---------- growth: badges, credentials ---------- */
+
+export const issuers: IssuerMeta[] = [
+  { id: 'aws', name: 'Amazon Web Services', hex: '#FF9900' },
+  { id: 'linuxfoundation', name: 'The Linux Foundation', hex: '#5B9BFF' },
+  { id: 'anthropic', name: 'Anthropic', hex: '#D4A27F' },
+  { id: 'cantrill', name: 'learn.cantrill.io', hex: '#4FC3F7' },
+]
+
+/** Publicly verifiable badges. These get the large cards. */
+export const badges: Badge[] = [
+  {
+    title: 'Introduction to DevOps and Site Reliability Engineering',
+    code: 'LFS162',
+    issuer: 'The Linux Foundation',
+    date: 'Aug 2026',
+    verify: 'https://www.credly.com/earner/earned/badge/451a0095-875a-433e-8308-6cb8ab9a4379',
+    art: lfs162Art,
+  },
+  {
+    title: 'Introduction to Kubernetes',
+    code: 'LFS158',
+    issuer: 'The Linux Foundation',
+    date: 'Aug 2026',
+    verify: 'https://www.credly.com/earner/earned/badge/a2819728-a077-489a-abc3-3cbc5ee58a1a',
+    art: lfs158Art,
+  },
+  {
+    title: 'AWS Cloud Practitioner',
+    code: 'SimuLearn',
+    issuer: 'Amazon Web Services',
+    date: 'Jul 2026',
+    verify: 'https://www.credly.com/earner/earned/badge/59884cce-a1dd-4717-9baa-2b217ecab5ca',
+    art: awsCpArt,
+  },
+]
+
+/** Everything completed, newest first. Sorted at render time by `iso`. */
 export const credentials: Credential[] = [
-  { name: 'AWS Cloud Practitioner Essentials', issuer: 'AWS Training & Certification', note: 'Jul 2026' },
+  {
+    name: 'Introduction to DevOps and Site Reliability Engineering',
+    issuer: 'linuxfoundation',
+    date: 'Aug 2026',
+    iso: '2026-08-18',
+    pdf: '/certificates/lfs162-devops-sre.pdf',
+    ref: 'LF-gmmh5vets7',
+  },
+  {
+    name: 'Introduction to Kubernetes',
+    issuer: 'linuxfoundation',
+    date: 'Aug 2026',
+    iso: '2026-08-13',
+    pdf: '/certificates/lfs158-kubernetes.pdf',
+    ref: 'LF-p6qx7u27zz',
+  },
+  {
+    name: 'Introduction to AWS Identity and Access Management',
+    issuer: 'aws',
+    date: 'Jul 2026',
+    iso: '2026-07-21',
+    pdf: '/certificates/aws-iam-introduction.pdf',
+  },
+  {
+    name: 'AWS SimuLearn: Networking Concepts',
+    issuer: 'aws',
+    date: 'Jul 2026',
+    iso: '2026-07-20',
+    pdf: '/certificates/aws-simulearn-networking-concepts.pdf',
+  },
+  {
+    name: 'AWS SimuLearn: Cloud Computing Essentials',
+    issuer: 'aws',
+    date: 'Jul 2026',
+    iso: '2026-07-20',
+    pdf: '/certificates/aws-simulearn-cloud-computing-essentials.pdf',
+  },
+  {
+    name: 'AWS Solutions Architect — Fundamentals of Architecting',
+    issuer: 'aws',
+    date: 'Jul 2026',
+    iso: '2026-07-19',
+    pdf: '/certificates/aws-solutions-architect-fundamentals.pdf',
+  },
+  {
+    name: 'AWS Cloud Practitioner Essentials',
+    issuer: 'aws',
+    date: 'Jul 2026',
+    iso: '2026-07-15',
+    pdf: '/certificates/aws-cloud-practitioner-essentials.pdf',
+  },
+  {
+    name: 'Introduction to Claude Cowork',
+    issuer: 'anthropic',
+    date: '2026',
+    iso: '2026-07-10',
+    pdf: '/certificates/anthropic-claude-cowork.pdf',
+  },
+  {
+    name: 'Claude Code 101',
+    issuer: 'anthropic',
+    date: '2026',
+    iso: '2026-07-09',
+    pdf: '/certificates/anthropic-claude-code-101.pdf',
+  },
+  {
+    name: 'Claude 101',
+    issuer: 'anthropic',
+    date: '2026',
+    iso: '2026-07-08',
+    pdf: '/certificates/anthropic-claude-101.pdf',
+  },
+  {
+    name: 'Docker Fundamentals',
+    issuer: 'cantrill',
+    date: 'Jun 2025',
+    iso: '2025-06-13',
+    pdf: '/certificates/docker-fundamentals.pdf',
+  },
+]
+
+/** Earlier vocational certifications — no PDFs, listed in /history. */
+export const priorCerts = [
   { name: 'CCNA', issuer: 'MIS Dehradun' },
   { name: 'RHCSA', issuer: 'MIS Dehradun' },
   { name: 'MCSA', issuer: 'MIS Dehradun' },
 ]
+
+export const growthLead = {
+  text: 'Four years of networking got me here. ',
+  accent: 'The last twelve months are how I get there.',
+}
 
 /* ---------- links ---------- */
 

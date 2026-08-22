@@ -1,4 +1,4 @@
-import { credentials, profile, roles, socials } from '../data'
+import { priorCerts, profile, roles, socials } from '../data'
 
 export function History() {
   return (
@@ -39,13 +39,10 @@ export function History() {
         </div>
 
         <div className="certs">
-          {credentials.map((cred) => (
-            <div className="certs__item" key={cred.name}>
-              <b>{cred.name}</b>
-              <span>
-                {cred.issuer}
-                {cred.note ? ` · ${cred.note}` : ''}
-              </span>
+          {priorCerts.map((cert) => (
+            <div className="certs__item" key={cert.name}>
+              <b>{cert.name}</b>
+              <span>{cert.issuer}</span>
             </div>
           ))}
         </div>

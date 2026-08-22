@@ -35,12 +35,6 @@ export type Role = {
   points: string[]
 }
 
-export type Credential = {
-  name: string
-  issuer: string
-  note?: string
-}
-
 export type StackGroup = {
   name: string
   items: string[]
@@ -63,4 +57,39 @@ export type ShellCommand = {
 export type SheetRow = {
   key: string
   value: string
+}
+
+/** A verified badge with public proof — rendered as a large card. */
+export type Badge = {
+  title: string
+  code?: string
+  issuer: string
+  date: string
+  /** Public verification URL (Credly) */
+  verify: string
+  /** Imported badge artwork */
+  art: string
+}
+
+export type Issuer = 'aws' | 'linuxfoundation' | 'anthropic' | 'cantrill'
+
+/** A completed course/certificate — rendered as a compact ledger row. */
+export type Credential = {
+  name: string
+  issuer: Issuer
+  /** Short display date, e.g. "Jul 2026" */
+  date: string
+  /** ISO date, used only for sorting */
+  iso: string
+  /** Path to the certificate PDF in /public */
+  pdf?: string
+  /** Certificate ID where the issuer provides one */
+  ref?: string
+}
+
+export type IssuerMeta = {
+  id: Issuer
+  name: string
+  /** Brand colour used for the mark */
+  hex: string
 }

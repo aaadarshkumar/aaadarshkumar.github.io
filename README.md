@@ -66,7 +66,10 @@ touching for a content change.
 | The six "what I run" tiles | `work` |
 | Toolbox columns | `stack` |
 | Jobs and education | `roles` |
-| Certifications | `credentials` |
+| Verified badges (`/growth`) | `badges` |
+| Certificates (`/growth`) | `credentials` |
+| Issuer names and brand colours | `issuers` |
+| Older vocational certs (`/history`) | `priorCerts` |
 | Footer / contact links | `socials` |
 
 Notes on a few fields:
@@ -190,6 +193,36 @@ src/
 
 ---
 
+## Adding a credential
+
+Drop the PDF into `public/certificates/` and add a row to `credentials` in
+`src/data/index.ts`:
+
+```ts
+{
+  name: 'Exact name as printed on the certificate',
+  issuer: 'aws',                 // aws | linuxfoundation | anthropic | cantrill
+  date: 'Sep 2026',              // what the page shows
+  iso: '2026-09-04',             // sorting only, never displayed
+  pdf: '/certificates/my-cert.pdf',
+  ref: 'LF-abc123',              // optional
+}
+```
+
+Rows sort themselves newest-first inside each issuer group, and the counts in
+the section header and the terminal's `certs` command update on their own.
+
+For a new issuer, add an entry to `issuers` and map it to a mark in
+`MARKS` at the top of `src/components/Growth.tsx`.
+
+If a credential has public proof, add it to `badges` instead (or as well) — those
+get the large cards with the issuer's own badge artwork and a Credly link.
+
+**Use the official credential name.** "Introduction to DevOps and Site
+Reliability Engineering" reads very differently to a recruiter than "DevOps and
+Site Reliability Engineering", and shortening it is the kind of thing that gets
+noticed in an interview. The card layout is vertical precisely so full names fit.
+
 ## Gotchas worth remembering
 
 **Anything in `public/` is referenced from the site root, not relatively.**
@@ -208,6 +241,12 @@ arithmetic or you get a stranded tile on a half-empty row.
 **`profile.startedISO`** is `2022-01-01`, which is what produces "4+ years". It
 counts from the MISNT role, i.e. total professional experience. Change it to
 `2022-09-01` if you would rather count only from Rubico.
+
+**Brand marks.** Anthropic, The Linux Foundation and Docker come from
+simple-icons, which ships the official glyphs. Amazon had its mark pulled from
+that set over trademark, so AWS renders as a wordmark tile rather than a
+reconstructed logo — the real AWS badge artwork still appears on the badge card,
+which is the sanctioned way to display AWS training credentials.
 
 **Your job title at Rubico** is recorded as "Cloud & Systems Engineer" in
 `roles`, taken from the resume PDF. If your official title is Network Engineer,

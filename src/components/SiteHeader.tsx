@@ -2,6 +2,7 @@ import { useStuck } from '../lib/hooks'
 import { profile } from '../data'
 
 const NAV = [
+  { label: '/growth', href: '#growth' },
   { label: '/build', href: '#build' },
   { label: '/stack', href: '#stack' },
   { label: '/history', href: '#history' },

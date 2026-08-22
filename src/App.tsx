@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { SiteHeader } from './components/SiteHeader'
 import { Hero } from './components/Hero'
 import { About, Stack, Ticker, Work } from './components/Sections'
+import { Growth } from './components/Growth'
 import { History, Contact } from './components/History'
 import { Shell } from './components/Shell'
 import { useFinePointer, useReveal, useScrollTokens } from './lib/hooks'
@@ -30,8 +31,8 @@ function PointerDot() {
     }
 
     const tick = () => {
-      x += (tx - x) * 0.2
-      y += (ty - y) * 0.2
+      x += (tx - x) * 0.5
+      y += (ty - y) * 0.5
       const node = dot.current
       if (node) node.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`
       raf = requestAnimationFrame(tick)
@@ -70,6 +71,7 @@ export default function App() {
         <Hero />
         <Ticker />
         <About />
+        <Growth />
         <Work />
         <Stack />
         <History />

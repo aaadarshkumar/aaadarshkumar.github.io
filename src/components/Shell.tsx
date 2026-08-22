@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent, ReactNode } from 'react'
-import { credentials, profile, resume, roles, stack, yearsSinceStart } from '../data'
+import { badges, credentials, profile, resume, roles, stack, yearsSinceStart } from '../data'
 import type { ShellCommand } from '../types'
 
 const HOST = 'aadarsh@cloud'
@@ -43,8 +43,12 @@ function buildCommands(): ShellCommand[] {
     },
     {
       command: 'certs',
-      description: 'certifications',
-      output: credentials.map((c) => `${c.name.padEnd(36)}${c.issuer}${c.note ? ` (${c.note})` : ''}`),
+      description: 'certifications and badges',
+      output: [
+        `${credentials.length} credentials · ${badges.length} verified badges`,
+        '',
+        ...credentials.map((c) => `  ${c.date.padEnd(10)}${c.name}`),
+      ],
     },
     {
       command: 'contact',
