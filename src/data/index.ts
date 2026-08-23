@@ -10,6 +10,7 @@ import lfs162Art from '../assets/badges/lfs162.webp'
 import lfs158Art from '../assets/badges/lfs158.webp'
 import awsCpArt from '../assets/badges/aws-cloud-practitioner.webp'
 import ibmDockerArt from '../assets/badges/ibm-docker-essentials.webp'
+import ibmNetworkSecurityArt from '../assets/badges/ibm-zos-network-security.webp'
 import type {
   Badge,
   Credential,
@@ -257,6 +258,14 @@ export const issuers: IssuerMeta[] = [
 /** Publicly verifiable badges. These get the large cards. */
 export const badges: Badge[] = [
   {
+    title: 'z/OS Network Security - Foundations',
+    code: 'IBM System Foundational',
+    issuer: 'IBM',
+    date: 'Aug 2026',
+    verify: 'https://www.credly.com/badges/f16fa0b6-541e-43b9-88be-79f8ca82eca8/public_url',
+    art: ibmNetworkSecurityArt,
+  },
+  {
     title: 'Docker Essentials: A Developer Introduction',
     code: 'IBM Skills Network',
     issuer: 'IBM',
@@ -265,7 +274,7 @@ export const badges: Badge[] = [
     art: ibmDockerArt,
   },
   {
-    title: 'Introduction to DevOps and Site Reliability Engineering',
+    title: 'DevOps and Site Reliability Engineering',
     code: 'LFS162',
     issuer: 'The Linux Foundation',
     date: 'Aug 2026',
@@ -292,6 +301,13 @@ export const badges: Badge[] = [
 
 /** Everything completed, newest first. Sorted at render time by `iso`. */
 export const credentials: Credential[] = [
+  {
+    name: 'z/OS Network Security - Foundations',
+    issuer: 'ibm',
+    date: 'Aug 2026',
+    iso: '2026-08-25',
+    pdf: '/certificates/ibm-zos-network-security.pdf',
+  },
   {
     name: 'Docker Essentials: A Developer Introduction',
     issuer: 'ibm',
