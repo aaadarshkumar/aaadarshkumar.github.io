@@ -29,8 +29,8 @@ export { portrait, resume }
 
 export const profile = {
   first: 'Aadarsh',
-  last: 'Kumar',
-  role: 'Network Engineer → DevOps',
+  last: '',
+  role: 'Network Engineer → DevOps | AWS · Terraform · Kubernetes · CI/CD · Linux | CCNA · RHCSA',
   city: 'Rishikesh, Uttarakhand',
   country: 'IN',
   /** IANA zone used by the live clock in the hero */
@@ -81,11 +81,11 @@ export const aboutCopy: string[] = [
 ]
 
 export const sheet: SheetRow[] = [
-  { key: 'Now', value: 'Cloud & Systems Engineer, Rubico' },
-  { key: 'Moving to', value: 'DevOps / platform engineering' },
+  { key: 'Now', value: 'Network Engineer  , Rubico' },
+  { key: 'Moving to', value: 'DevOps / Platform engineering' },
   { key: 'Foundation', value: '4+ yrs networking, Linux, AWS' },
-  { key: 'Deepening', value: 'Kubernetes · Terraform · GitOps' },
-  { key: 'Certified', value: 'CCNA · RHCSA · MCSA · AWS CCP' },
+  { key: 'Deepening', value: 'Kubernetes · Terraform · GitOps' }
+  // { key: 'Certified', value: 'CCNA · RHCSA · MCSA · AWS CCP' },
 ]
 
 /* ---------- ticker ---------- */
@@ -214,7 +214,7 @@ export const stack: StackGroup[] = [
 export const roles: Role[] = [
   {
     org: 'Rubico',
-    title: 'Cloud & Systems Engineer',
+    title: 'Network Engineer → DevOps',
     period: 'Sep 2022 — Present',
     place: 'Uttarakhand, IN',
     points: [
