@@ -1,13 +1,14 @@
+import { Blocks, History, Layers, Mail, Terminal, TrendingUp } from 'lucide-react'
 import { useStuck } from '../lib/hooks'
 import { fullName, monogram } from '../data'
 
 const NAV = [
-  { label: '/growth', href: '#growth' },
-  { label: '/build', href: '#build' },
-  { label: '/stack', href: '#stack' },
-  { label: '/history', href: '#history' },
-  { label: '/shell', href: '#shell' },
-  { label: '/contact', href: '#contact' },
+  { label: '/growth', href: '#growth', Icon: TrendingUp },
+  { label: '/build', href: '#build', Icon: Blocks },
+  { label: '/stack', href: '#stack', Icon: Layers },
+  { label: '/history', href: '#history', Icon: History },
+  { label: '/shell', href: '#shell', Icon: Terminal },
+  { label: '/contact', href: '#contact', Icon: Mail },
 ]
 
 export function SiteHeader() {
@@ -25,9 +26,10 @@ export function SiteHeader() {
       </a>
 
       <nav className="chrome__nav" aria-label="Sections">
-        {NAV.map((item) => (
-          <a key={item.href} href={item.href}>
-            {item.label}
+        {NAV.map(({ label, href, Icon }) => (
+          <a key={href} href={href}>
+            <Icon size={13} strokeWidth={1.8} aria-hidden="true" />
+            {label}
           </a>
         ))}
         <span className="chrome__prog" aria-hidden="true">

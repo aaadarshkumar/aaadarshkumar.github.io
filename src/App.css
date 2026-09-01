@@ -160,15 +160,28 @@
   align-items: center;
   gap: clamp(14px, 2vw, 30px);
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: clamp(12px, 0.95vw, 14px);
   letter-spacing: 0.04em;
 }
 
 .chrome__nav a {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 4px 0;
   opacity: 0.78;
   transition: opacity 0.25s, color 0.25s;
+}
+
+.chrome__nav a svg {
+  flex: none;
+  opacity: 0.72;
+  transition: opacity 0.25s;
+}
+
+.chrome__nav a:hover svg {
+  opacity: 1;
 }
 
 .chrome__nav a:hover {
@@ -176,7 +189,17 @@
   color: var(--accent-lift);
 }
 
-.chrome.stuck .chrome__nav a:hover {
+.chrome.stuck .chrome__nav a svg {
+  flex: none;
+  opacity: 0.72;
+  transition: opacity 0.25s;
+}
+
+.chrome__nav a:hover svg {
+  opacity: 1;
+}
+
+.chrome__nav a:hover {
   color: var(--accent);
 }
 
@@ -320,7 +343,7 @@ body.dot-on button {
   align-items: center;
   gap: 10px 22px;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: clamp(12px, 1.05vw, 15px);
   letter-spacing: 0.08em;
   color: var(--on-deep-2);
 }
