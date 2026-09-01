@@ -1,4 +1,4 @@
-import { priorCerts, profile, roles, socials } from '../data'
+import { fullName, priorCerts, profile, roles, socials } from '../data'
 
 export function History() {
   return (
@@ -85,7 +85,7 @@ export function Contact() {
 
       <footer className="foot">
         <span>
-          © {new Date().getFullYear()} {profile.first} {profile.last} · {profile.city}
+          © {new Date().getFullYear()} {fullName} · {profile.city}
         </span>
         <a href="#top">Back to top ↑</a>
       </footer>

@@ -1,5 +1,5 @@
 import { ArrowUpRight, FileText } from 'lucide-react'
-import { heroGhost, heroThesis, portrait, profile, resume, yearsSinceStart } from '../data'
+import { fullName, heroGhost, heroThesis, portrait, profile, resume, yearsSinceStart } from '../data'
 import { useLocalTime } from '../lib/hooks'
 
 const RING_TEXT = 'AWS · TERRAFORM · KUBERNETES · CI/CD · DOCKER · ANSIBLE · OBSERVABILITY · NETWORKING · '
@@ -35,7 +35,7 @@ export function Hero() {
         <div className="hero__intro">
           <h1 className="hero__name dsp">
             <span>{profile.first}</span>
-            <span className="l2">{profile.last}</span>
+            {profile.last ? <span className="l2">{profile.last}</span> : null}
           </h1>
 
           <p className="hero__role">{profile.role}</p>
@@ -63,7 +63,7 @@ export function Hero() {
             src={portrait}
             width={800}
             height={800}
-            alt={`${profile.first} ${profile.last}`}
+            alt={fullName}
             fetchPriority="high"
           />
           <span className="port__edge" aria-hidden="true" />

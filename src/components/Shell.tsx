@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent, ReactNode } from 'react'
-import { badges, credentials, profile, resume, roles, stack, yearsSinceStart } from '../data'
+import { badges, credentials, fullName, profile, resume, roles, stack, yearsSinceStart } from '../data'
 import type { ShellCommand } from '../types'
 
 const HOST = 'aadarsh@cloud'
@@ -13,7 +13,7 @@ function buildCommands(): ShellCommand[] {
       command: 'whoami',
       description: 'who you are talking to',
       output: [
-        `${profile.first} ${profile.last} — ${profile.role}`,
+        `${fullName} — ${profile.role}`,
         `${profile.city}, ${profile.country} · ${yearsSinceStart()}+ years in networking and infrastructure`,
         'moving into DevOps and platform engineering — networking is the foundation, not the exit',
       ],
@@ -90,7 +90,7 @@ export function Shell() {
   const commands = useMemo(() => buildCommands(), [])
   const [lines, setLines] = useState<Line[]>([
     { kind: 'in', body: 'whoami' },
-    { kind: 'out', body: `${profile.first} ${profile.last} — ${profile.role}` },
+    { kind: 'out', body: `${fullName} — ${profile.role}` },
     {
       kind: 'out',
       body: <span className="shell__hint">type `help` for the list of commands</span>,

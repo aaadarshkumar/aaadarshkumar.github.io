@@ -5,7 +5,7 @@
 
 import { Github, Linkedin, FileText, Mail } from 'lucide-react'
 import portrait from '../assets/portrait.webp'
-import resume from '../assets/aadarsh_kumar_resume.pdf'
+import resume from '../assets/aadarsh_resume.pdf'
 import lfs162Art from '../assets/badges/lfs162.webp'
 import lfs158Art from '../assets/badges/lfs158.webp'
 import awsCpArt from '../assets/badges/aws-cloud-practitioner.webp'
@@ -29,8 +29,13 @@ export { portrait, resume }
 
 export const profile = {
   first: 'Aadarsh',
+  /** Empty on purpose — legal name on DL, Aadhaar and PAN is the single
+   *  name "Aadarsh". Render names via `fullName` below, never by
+   *  concatenating first + last, or you get a trailing space. */
   last: '',
-  role: 'Network Engineer → DevOps | AWS · Terraform · Kubernetes · CI/CD · Linux | CCNA · RHCSA',
+  /** Positioning line, not an employment title. The verifiable job title
+   *  lives in `roles` below and must match LinkedIn exactly. */
+  role: 'Network Engineer → DevOps',
   city: 'Rishikesh, Uttarakhand',
   country: 'IN',
   /** IANA zone used by the live clock in the hero */
@@ -47,6 +52,12 @@ export const profile = {
   /** Career start. Drives the year count in the hero and `uptime`. */
   startedISO: '2022-01-01',
 }
+
+/** Name as one string — safe whether or not `last` is set. */
+export const fullName = [profile.first, profile.last].filter(Boolean).join(' ')
+
+/** Monogram for the sticky header. */
+export const monogram = (profile.first[0] + (profile.last[0] ?? '')).toUpperCase()
 
 /** Huge word behind the hero. Keep it short — one word reads best. */
 export const heroGhost = 'DEVOPS'
@@ -77,15 +88,15 @@ export const aboutChips = [
 export const aboutCopy: string[] = [
   'I have spent four years running networks and Linux infrastructure — routing and switching, DNS, firewall policy, VPN tunnels, certificates, load balancers, and the servers underneath all of it. I am now moving deliberately into DevOps and platform engineering.',
   'The networking background turns out to be the useful part rather than the thing I am leaving behind. A security group that is one port too tight, a health check aimed at the wrong port, an MTU mismatch inside an overlay, a certificate that expired on a Saturday — that is where most production incidents actually live, and it is the layer I have been debugging for years.',
-  'So when a pipeline goes green but traffic still will not flow, I know where to look. Day to day I am building CI/CD in GitHub Actions, describing AWS in Terraform and Ansible instead of clicking it, packaging with Docker, and wiring Prometheus and Grafana so an alert still means something.',
+  'Day to day that now means provisioning workstations through a GitOps pipeline instead of a checklist, managing roughly a hundred mixed Linux, macOS and Windows endpoints as version-controlled config, running a threat-detection and log pipeline that routes real signal to chat, and building CI/CD in GitHub Actions. So when a pipeline goes green but traffic still will not flow, I know where to look.',
 ]
 
 export const sheet: SheetRow[] = [
-  { key: 'Now', value: 'Network Engineer  , Rubico' },
-  { key: 'Moving to', value: 'DevOps / Platform engineering' },
-  { key: 'Foundation', value: '4+ yrs networking, Linux, AWS' },
-  { key: 'Deepening', value: 'Kubernetes · Terraform · GitOps' }
-  // { key: 'Certified', value: 'CCNA · RHCSA · MCSA · AWS CCP' },
+  { key: 'Now', value: 'Network Engineer, Rubico' },
+  { key: 'Moving to', value: 'DevOps / platform engineering' },
+  { key: 'Foundation', value: `${yearsSinceStart()}+ yrs networking, Linux, AWS` },
+  { key: 'Deepening', value: 'Kubernetes · Terraform · GitOps' },
+  { key: 'Certified', value: 'CCNA · RHCSA · AWS CCP · LFS158 · LFS162' },
 ]
 
 /* ---------- ticker ---------- */
@@ -101,6 +112,7 @@ export const tickerItems = [
   'Argo CD',
   'Prometheus',
   'Grafana',
+  'Loki',
   'Linux',
   'WireGuard',
   'Networking',
@@ -111,7 +123,7 @@ export const tickerItems = [
 
 /* ---------- what I build ----------
    Spans are tuned to fill the 12-column grid exactly:
-   Wide(8) + Third(4) | Third + Third + Third | Half(6) + Half(6)
+   Wide(8) + Third(4) | Wide(8) + Third(4) | Third×3 | Third×3
    Reorder freely, but keep each row adding up to 12.                */
 
 export const work: WorkItem[] = [
@@ -131,6 +143,24 @@ export const work: WorkItem[] = [
       'Provisioning and securing EC2, VPC, RDS and S3 — subnets, route tables, security groups and IAM boundaries, not just instances.',
     tags: ['EC2', 'VPC', 'RDS', 'S3', 'IAM'],
     glyph: 'cloud',
+    span: Span.Third,
+  },
+  {
+    title: 'GitOps workstation provisioning',
+    kind: 'GitOps · Configuration',
+    description:
+      'Ansible playbooks orchestrated through Gitea Actions as a multi-job DAG, with a composite action for the setup every job shares. Machine build-out went from a manual checklist to a reviewed merge — privilege escalation, package-source compatibility across Ubuntu releases and secure key handling all solved inside the pipeline rather than by hand each time.',
+    tags: ['Ansible', 'Gitea Actions', 'GitOps', 'Bash', 'Linux'],
+    glyph: 'script',
+    span: Span.Wide,
+  },
+  {
+    title: 'Endpoint fleet as code',
+    kind: 'Endpoint · Config as code',
+    description:
+      'Roughly 99 mixed Linux, macOS and Windows hosts managed as version-controlled configuration, with a systemd watchdog that tells a deliberate stop apart from a real failure before it raises an alert.',
+    tags: ['Fleet', 'osquery', 'systemd', 'GitOps'],
+    glyph: 'server',
     span: Span.Third,
   },
   {
@@ -161,22 +191,22 @@ export const work: WorkItem[] = [
     span: Span.Third,
   },
   {
+    title: 'Threat detection and log pipeline',
+    kind: 'Security · Observability',
+    description:
+      'CrowdSec, Suricata and ClamAV across exposed hosts, with logs shipped over an encrypted tunnel into Loki and Grafana alert rules routing real signal to chat.',
+    tags: ['CrowdSec', 'Suricata', 'Grafana Alloy', 'Loki', 'WireGuard'],
+    glyph: 'network',
+    span: Span.Third,
+  },
+  {
     title: 'WireGuard VPN infrastructure',
     kind: 'Networking · Cloud',
     description:
-      'Built WireGuard VPN infrastructure from scratch on AWS EC2 and Lightsail — instance provisioning, firewall and routing configuration, peer management, client provisioning and secure remote connectivity.',
-    tags: ['WireGuard', 'AWS EC2', 'Lightsail', 'Routing', 'Linux'],
+      'Built WireGuard VPN infrastructure from scratch on AWS EC2 and Lightsail — instance provisioning, firewall and routing configuration, peer management and secure remote connectivity.',
+    tags: ['WireGuard', 'AWS EC2', 'Lightsail', 'Routing'],
     glyph: 'vpn',
-    span: Span.Half,
-  },
-  {
-    title: 'The networking foundation',
-    kind: 'Network · Security',
-    description:
-      'Building-wide network infrastructure: routing and switching, DNS, firewall policy, TLS and certificate lifecycle, and the Linux troubleshooting that goes with all of it. This is the layer most cloud incidents actually resolve to.',
-    tags: ['Routing', 'DNS', 'Firewalls', 'TLS', 'Wireshark'],
-    glyph: 'network',
-    span: Span.Half,
+    span: Span.Third,
   },
 ]
 
@@ -185,7 +215,7 @@ export const work: WorkItem[] = [
 export const stack: StackGroup[] = [
   {
     name: 'Cloud',
-    items: ['AWS EC2', 'VPC', 'RDS', 'S3', 'Elastic Beanstalk', 'CloudWatch', 'Azure', 'DigitalOcean'],
+    items: ['AWS EC2', 'VPC', 'RDS', 'S3', 'Lightsail', 'Elastic Beanstalk', 'CloudWatch', 'Azure', 'DigitalOcean'],
   },
   {
     name: 'Infrastructure as code',
@@ -193,54 +223,69 @@ export const stack: StackGroup[] = [
   },
   {
     name: 'CI/CD',
-    items: ['GitHub Actions', 'Jenkins', 'GitLab CI', 'AWS CodePipeline', 'Argo CD'],
+    items: ['GitHub Actions', 'Gitea Actions', 'Jenkins', 'GitLab CI', 'AWS CodePipeline', 'Argo CD'],
   },
   {
     name: 'Containers',
-    items: ['Docker', 'Kubernetes', 'Helm', 'Nginx', 'Apache'],
+    items: ['Docker', 'Kubernetes', 'Helm', 'LXD / LXC', 'Nginx', 'Apache'],
   },
   {
     name: 'Observe & operate',
-    items: ['Prometheus', 'Grafana', 'Loki', 'Linux administration', 'Bash', 'Python'],
+    items: ['Prometheus', 'Grafana', 'Grafana Alloy', 'Loki', 'Fleet / osquery', 'Linux administration', 'Bash', 'Python'],
   },
   {
     name: 'Network & security',
-    items: ['Routing & switching', 'DNS', 'Firewall policy', 'WireGuard', 'TLS / OpenSSL', 'Wireshark'],
+    items: ['Routing & switching', 'DNS', 'Firewall policy', 'WireGuard', 'TLS / OpenSSL', 'CrowdSec', 'Suricata', 'Wireshark'],
   },
 ]
 
-/* ---------- history ---------- */
+/* ---------- history ----------
+   `title` here is the employment title a background check would confirm.
+   Keep it identical to LinkedIn. Positioning goes in `profile.role`.     */
 
 export const roles: Role[] = [
   {
     org: 'Rubico',
-    title: 'Network Engineer → DevOps',
-    period: 'Sep 2022 — Present',
-    place: 'Uttarakhand, IN',
+    title: 'Network Engineer',
+    period: 'Dec 2024 — Present',
+    place: 'Haridwar, IN · On-site',
     points: [
-      'Build and maintain CI/CD pipelines in GitHub Actions and AWS CodePipeline, cutting releases down to a merge.',
-      'Provision and secure AWS infrastructure — EC2, VPC, RDS, S3 — and automate application deployments with Elastic Beanstalk.',
-      'Run building-wide network infrastructure: routing and switching, DNS, firewall policy and remote access, plus Linux troubleshooting for internal teams.',
-      'Automate operational work in Bash, Python and YAML, and package applications with Docker for consistent environments.',
-      'Monitor system performance with CloudWatch, apply security practices and tune environments for availability and scale.',
+      'Build and maintain CI/CD pipelines in GitHub Actions and AWS CodePipeline, cutting a release down to a merge.',
+      'Built a GitOps workstation provisioning pipeline — Ansible playbooks orchestrated through Gitea Actions as a multi-job DAG with a composite action for shared setup.',
+      'Manage roughly 99 mixed Linux, macOS and Windows endpoints as version-controlled configuration, with a systemd watchdog that separates a deliberate stop from a real failure before alerting.',
+      'Designed and run a threat-detection stack — CrowdSec, Suricata and ClamAV — shipping logs over WireGuard into Loki with Grafana alert rules routing to chat.',
+      'Run building-wide network infrastructure: routing and switching, DNS, firewall policy, site-to-site VPN and certificate lifecycle.',
+    ],
+  },
+  {
+    org: 'Rubico',
+    title: 'Associate Network/Cloud Support Engineer',
+    period: 'Sep 2022 — Dec 2024',
+    place: 'Haridwar, IN · On-site',
+    points: [
+      'Provisioned and secured AWS infrastructure — EC2, VPC, RDS, S3 — and automated application deployments with Elastic Beanstalk.',
+      'Built WireGuard VPN infrastructure from scratch on EC2 and Lightsail: provisioning, routing, firewall policy and peer management.',
+      'Automated operational work in Bash, Python and YAML, and packaged applications with Docker for consistent environments.',
+      'Monitored system performance with CloudWatch, applied security practices and tuned environments for availability and scale.',
+      'Installed and maintained Apache and Nginx web servers, and handled Linux troubleshooting for internal teams.',
     ],
   },
   {
     org: 'MISNT Service Private Limited',
-    title: 'IT Support Engineer',
-    period: 'Jan 2022 — Sep 2022',
-    place: 'IN',
+    title: 'Network and Desktop Support Engineer',
+    period: 'Jan 2022 — Aug 2022',
+    place: 'Dehradun, IN',
     points: [
       'Worked directly with clients to diagnose technical issues and scope service needs.',
+      'Configured and troubleshot routing, switching and LAN connectivity to keep downtime short.',
       'Installed and maintained hardware and peripherals; handled OS and software installs and upgrades.',
-      'Resolved network faults to keep downtime short, and kept service reports and inventory current.',
     ],
   },
   {
     org: 'Modern Institute of Technology',
     title: 'Bachelor of Computer Applications',
     period: 'Aug 2019 — 2021',
-    place: 'IN',
+    place: 'Rishikesh, IN',
     points: ['Computing fundamentals, networks and systems — the base the rest of this was built on.'],
   },
 ]
@@ -290,8 +335,8 @@ export const badges: Badge[] = [
     art: lfs158Art,
   },
   {
-    title: 'AWS Cloud Practitioner',
-    code: 'SimuLearn',
+    title: 'AWS Cloud Practitioner Essentials',
+    code: 'AWS Training (course)',
     issuer: 'Amazon Web Services',
     date: 'Jul 2026',
     verify: 'https://www.credly.com/badges/59884cce-a1dd-4717-9baa-2b217ecab5ca/public_url',
@@ -404,7 +449,7 @@ export const priorCerts = [
 ]
 
 export const growthLead = {
-  text: 'Four years of networking got me here. ',
+  text: `${yearsWord(yearsSinceStart())} years of networking got me here. `,
   accent: 'The last twelve months are how I get there.',
 }
 
@@ -423,4 +468,10 @@ export function yearsSinceStart(): number {
   const start = new Date(profile.startedISO)
   const ms = Date.now() - start.getTime()
   return Math.max(1, Math.floor(ms / (1000 * 60 * 60 * 24 * 365.25)))
+}
+
+/** Spells the year count so prose reads "Four years" rather than "4 years". */
+export function yearsWord(n: number): string {
+  const words = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten']
+  return words[n] ?? String(n)
 }

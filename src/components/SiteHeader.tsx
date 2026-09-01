@@ -1,5 +1,5 @@
 import { useStuck } from '../lib/hooks'
-import { profile } from '../data'
+import { fullName, monogram } from '../data'
 
 const NAV = [
   { label: '/growth', href: '#growth' },
@@ -17,10 +17,10 @@ export function SiteHeader() {
     <header className={`chrome${stuck ? ' stuck' : ''}`}>
       <a className="chrome__mark" href="#top">
         <span className="chrome__mono" aria-hidden="true">
-          AK
+          {monogram}
         </span>
         <span className="chrome__name">
-          {profile.first} {profile.last}
+          {fullName}
         </span>
       </a>
 
